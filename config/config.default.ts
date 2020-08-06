@@ -1,5 +1,5 @@
 import { EggAppConfig, EggAppInfo, PowerPartial } from 'egg';
-const path = require('path');
+import path = require('path');
 export default (appInfo: EggAppInfo) => {
   const config = {} as PowerPartial<EggAppConfig>;
 
@@ -32,9 +32,9 @@ export default (appInfo: EggAppInfo) => {
       depth: 5,
       parameterLimit: 1000,
     },
-    enableTypes: ['json', 'form', 'text'],
+    enableTypes: [ 'json', 'form', 'text' ],
     extendTypes: {
-      text: ['text/xml', 'application/xml'],
+      text: [ 'text/xml', 'application/xml' ],
     },
   };
 
@@ -43,7 +43,7 @@ export default (appInfo: EggAppInfo) => {
     csrf: {
       enable: false,
     },
-    domainWhiteList: ['http://*:*/']
+    domainWhiteList: [ 'http://*:*/' ],
   };
   config.cors = {
     origin: '*',
@@ -54,24 +54,19 @@ export default (appInfo: EggAppInfo) => {
       path: '',
       port: 7001,
       hostname: '0.0.0.0',
-    }
+    },
   };
 
   config.assets = {
     publicPath: '/public',
-    // devServer: {
-    //   autoPort: true,
-    //   command: 'umi dev --port={port}',
-    //   env: {
-    //     APP_ROOT: path.join(__dirname, '../app/web'),
-    //     BROWSER: 'none',
-    //     SOCKET_SERVER: 'http://127.0.0.1:{port}',
-    //   },
-    //   debug: true,
-    // },
   };
   config.security = {
     csrf: false,
+  };
+
+  config.consul = {
+    service: [ 'EZP.WeiXin.Mall.Service.Host', 'EZR.OMCR.ProductWx.ApiHost', 'EZP.WeiXin.Service.Host', 'EZP.WeiXin.Mall.Service.Ex.Host' ],
+    appName: 'EZR.Online.Mobile.Server',
   };
   // the return config will combines to EggAppConfig
   return {

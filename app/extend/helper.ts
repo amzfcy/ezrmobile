@@ -1,14 +1,20 @@
 import { request } from '../utils/http';
+import fs = require('fs');
 
 module.exports = {
 
-  async mallRequest(method, url: string, data: object) {
-    
+  async mallRequest({
+    method, url, data, serviceType,
+  }) {
+
+    const serviceHost = this.app.service.consulConfig.getServiceHost(serviceType);
+    console.log(serviceHost);
     return request({
-      method,url,
+      method,
+      url,
       data,
     }).then(res => {
-        console.log(res)
+      console.log(res);
       if (!res.Success) {
         return Promise.reject(res);
       }
@@ -42,6 +48,34 @@ module.exports = {
 
   throwErrorBody(code, message) {
     this.ctx.throw({ code, message });
+  },
+
+  readFile(url) {
+    return new Promise(function(resolved, rejected) {
+      fs.readFile(url, 'utf-8', function(error, data) {
+        if (error) {
+          console.log('读取' + url + '文件失败：' + error.message);
+          rejected(error);
+          return;
+        }
+        const newData = JSON.parse(data);
+        resolved([ newData.Version, newData.Cluster, newData.PublishId ]);
+
+      });
+    });
+  },
+
+  getIPAdress() {
+    const interfaces = require('os').networkInterfaces();
+    for (const devName in interfaces) {
+      const iface = interfaces[devName];
+      for (let i = 0; i < iface.length; i++) {
+        const alias = iface[i];
+        if (alias.family === 'IPv4' && alias.address !== '127.0.0.1' && !alias.internal) {
+          return alias.address;
+        }
+      }
+    }
   },
 
 

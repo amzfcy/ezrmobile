@@ -15,5 +15,10 @@ export default () => {
     url:'http://192.168.12.162:6092'
   }
 
+  config.consul={
+    ip:'192.168.12.102',
+    port:'8000'
+  }
+
   return config;
 };

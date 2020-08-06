@@ -1,0 +1,73 @@
+{
+  "extAppid": "wx4835761ab511fbd7",
+  "extEnable": true,
+  "ext": {
+    "ald_config": {
+      "app_key": "",
+      "getLocation": 0,
+      "getUserinfo": 0
+    },
+    "tab_bar_config": {
+      "custom": true,
+      "list": [
+        {
+          "PagePath": "pages/index/index",
+          "text": "首页",
+          "iconPath": "./assets/images/icons/index.png",
+          "selectedIconPath": "./assets/images/icons/index.png"
+        },
+        {
+          "PagePath": "pages/tab/micro-page/micro-page",
+          "text": "我的",
+          "iconPath": "./assets/images/icons/index.png",
+          "selectedIconPath": "./assets/images/icons/index.png"
+        },
+        {
+          "PagePath": "pages/mine/mine",
+          "text": "会员中心",
+          "iconPath": "./assets/images/icons/index.png",
+          "selectedIconPath": "./assets/images/icons/index.png"
+        }
+      ]
+    },
+    "live_player_plugin_config":{
+      "enable":true
+    }
+  },
+  "tabBar": {
+    "custom": true,
+    "color": "#eeeeee",
+    "selectedColor": "#eeeeee",
+    "backgroundColor": "#eeeeee",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "/assets/images/icons/index.png",
+        "selectedIconPath": "/assets/images/icons/index.png"
+      },
+      {
+        "pagePath": "pages/tab/micro-page/micro-page",
+        "text": "首页",
+        "iconPath": "/assets/images/icons/index.png",
+        "selectedIconPath": "/assets/images/icons/index.png"
+      },
+      {
+        "pagePath": "pages/mine/mine",
+        "text": "首页",
+        "iconPath": "/assets/images/icons/index.png",
+        "selectedIconPath": "/assets/images/icons/index.png"
+      }
+    ]
+  },
+  "navigateToMiniProgramAppIdList": [
+    "wxeb490c6f9b154ef9",
+    "wx3661dec4a09553f1",
+    "wxd91233455436993e",
+    "wx4835761ab511fbd7",
+    "wxc861ede21d6ce3f4",
+    "wx5beca244ced909cd",
+    "wxbbc95ff6c749a80f",
+    "wx56c8f077de74b07c"
+  ]
+}

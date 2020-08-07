@@ -1,21 +1,27 @@
 
 interface AppBootHook{
   app: any;
+  port: number;
+
 }
 
 class AppBootHook {
 
   constructor(app) {
     this.app = app;
+    this.port = 0;
   }
 
-  // configWillLoad() {
+  configWillLoad() {
 
-  // }
+    // newbee
+  }
 
-  // async didLoad() {
+  async didLoad() {
 
-  // }
+    // 应用已经启动完毕
+
+  }
 
   // async willReady() {
 
@@ -28,12 +34,14 @@ class AppBootHook {
   }
 
   async serverDidReady() {
-    const ctx = await this.app.createAnonymousContext();
-    ctx.service.consulConfig.init(7001);
 
-    // this.app.service.consulConfig.init('7001')
-    console.log('1111111');
+    this.port = this.app.server.address().port;
+    const ctx = await this.app.createAnonymousContext();
+    ctx.service.consulConfig.init(this.port);
+
   }
+
+
 }
 
 module.exports = AppBootHook;

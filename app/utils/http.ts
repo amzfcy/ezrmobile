@@ -1,11 +1,5 @@
 import axios, { AxiosRequestConfig, AxiosResponse, AxiosError } from 'axios';
 
-/**
- * @export
- * @param {*} options
- * @returns
- */
-
 export async function request(options: AxiosRequestConfig) {
 
   const { url, data, method = 'get' } = options;
@@ -20,7 +14,6 @@ export async function request(options: AxiosRequestConfig) {
     }
     return res.data;
   }).catch((err: AxiosError) => {
-
-    return Promise.reject({ ...err.response });
+    return Promise.reject(err);
   });
 }

@@ -173,7 +173,7 @@ export default class ConsulConfig extends Service {
   public getServiceHost(appType) {
     console.log(appType);
     const serviceList = global['ConsumerInvoke:' + this.app.config.consul.appName + '/' + global.Version];
-    console.log(serviceList);
+    return serviceList;
   }
 
 }

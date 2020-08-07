@@ -6,7 +6,6 @@ module.exports = {
   async mallRequest({
     method, url, data, serviceType,
   }) {
-
     const serviceHost = this.app.service.consulConfig.getServiceHost(serviceType);
     console.log(serviceHost);
     return request({
@@ -14,7 +13,6 @@ module.exports = {
       url,
       data,
     }).then(res => {
-      console.log(res);
       if (!res.Success) {
         return Promise.reject(res);
       }
@@ -77,6 +75,5 @@ module.exports = {
       }
     }
   },
-
 
 };

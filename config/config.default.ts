@@ -49,13 +49,7 @@ export default (appInfo: EggAppInfo) => {
     origin: '*',
     allowMethods: 'GET,HEAD,PUT,POST,DELETE,PATCH,OPTIONS',
   };
-  config.cluster = {
-    listen: {
-      path: '',
-      port: 7001,
-      hostname: '0.0.0.0',
-    },
-  };
+
 
   config.assets = {
     publicPath: '/public',

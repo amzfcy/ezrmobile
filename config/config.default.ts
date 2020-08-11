@@ -59,7 +59,19 @@ export default (appInfo: EggAppInfo) => {
   };
 
   config.consul = {
-    service: [ 'EZP.WeiXin.Mall.Service.Host', 'EZR.OMCR.ProductWx.ApiHost', 'EZP.WeiXin.Service.Host', 'EZP.WeiXin.Mall.Service.Ex.Host' ],
+    service: [{
+      name: 'EZP.WeiXin.Mall.Service.Host',
+      type: 'mall',
+    }, {
+      name: 'EZR.OMCR.ProductWx.ApiHost',
+      type: 'product',
+    }, {
+      name: 'EZP.WeiXin.Service.Host',
+      type: 'mp',
+    }, {
+      name: 'EZP.WeiXin.Mall.Service.Ex.Host',
+      type: 'ex',
+    }],
     appName: 'EZR.Online.Mobile.Server',
   };
   // the return config will combines to EggAppConfig

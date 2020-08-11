@@ -6,6 +6,7 @@ module.exports = () => {
     if (user && user.SignStr) {
       await next();
     } else {
+      // await next();
       await ctx.service.auth.getAuthUrl();
       // ctx.helper.errorBody(8001, '权限校验失败');
       return null;

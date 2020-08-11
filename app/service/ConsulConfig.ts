@@ -1,6 +1,6 @@
 import { Service } from 'egg';
-import Consul = require('node-consul');
-
+import Consul = require('consul');
+import { find, sample } from 'lodash';
 declare namespace global {
   export let Version: any;
 }
@@ -41,9 +41,10 @@ export default class ConsulConfig extends Service {
 
       console.log(app.config.consul);
       app.config.consul.service.forEach(item => {
+        console.log(item.name);
         newConsul.watch({
           method: newConsul.health.service,
-          options: { service: item },
+          options: { service: item.name },
           backoffFactor: 1000,
         }).on('change', data => {
           ctx.service.consulConfig.triggerGetConfig(data && data.Value ? JSON.parse(data.Value) : []);
@@ -170,10 +171,19 @@ export default class ConsulConfig extends Service {
     return service;
   }
 
-  public getServiceHost(appType) {
-    console.log(appType);
-    const serviceList = global['ConsumerInvoke:' + this.app.config.consul.appName + '/' + global.Version];
-    return serviceList;
-  }
+  public getServiceHost(appType = 'mp') {
+    try {
+      const nowService = find(this.app.config.consul.service, v => v.type === appType);
 
+      const serviceList = global['ConsumerInvoke:' + this.app.config.consul.appName + '/' + global.Version];
+
+      const nowServiceData = find(serviceList, v => v.ServerApp === nowService.name);
+
+      // return nowServiceData.Service;
+      console.log(nowServiceData.Service);
+      return sample(nowServiceData.Service);
+    } catch (error) {
+      return null;
+    }
+  }
 }

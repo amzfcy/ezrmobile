@@ -6,11 +6,11 @@ module.exports = {
   async mallRequest({
     method, url, data, serviceType,
   }) {
-    const serviceHost = this.app.service.consulConfig.getServiceHost(serviceType);
+    const serviceHost = this.ctx.service.consulConfig.getServiceHost(serviceType);
     console.log(serviceHost);
     return request({
       method,
-      url,
+      url: serviceHost + url,
       data,
     }).then(res => {
       if (!res.Success) {

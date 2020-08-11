@@ -10,13 +10,18 @@ export default class Auth extends Service {
         brandId: this.ctx.session.brandId,
         IsNewWeiXinNode: true,
       };
-      const { OAuthCallBack } = await this.ctx.helper.mallRequest('GET', '/Wx/OAuth/GetBaseAuthorizeUrl?' + stringify(queryParams));
+      console.log(queryParams);
+      const { OAuthCallBack } = await this.ctx.helper.mallRequest({
+        method: 'GET',
+        url: '/Wx/OAuth/GetBaseAuthorizeUrl?' + stringify(queryParams),
+      });
       console.log(OAuthCallBack);
       if (OAuthCallBack) {
         this.ctx.redirect(OAuthCallBack);
       }
 
     } catch (error) {
+      console.log(error);
       return null;
     }
   }

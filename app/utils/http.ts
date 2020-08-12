@@ -8,13 +8,11 @@ export async function request(options: AxiosRequestConfig) {
     method,
     data,
   }).then(async (res: AxiosResponse) => {
-    console.log(res);
     if (res.status !== 200) {
       return Promise.reject(res.data);
     }
     return res.data;
   }).catch((err: AxiosError) => {
-    console.log(err);
     return Promise.reject(err);
   });
 }

@@ -5,6 +5,7 @@ module.exports = () => {
     ctx.session.brandId = brandId || 429;
     console.log(1212122112212121);
     console.log('user', user);
+    console.log('session', ctx.session);
     console.log(21212112999909009);
     if (user && user.SignStr) {
       await next();

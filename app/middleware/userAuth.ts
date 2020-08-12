@@ -3,7 +3,7 @@ module.exports = () => {
     const { user } = ctx.session;
     const { brandId } = ctx.request.header;
     ctx.session.brandId = brandId || 429;
-    console.log(user);
+    console.log('user', user);
     if (user && user.SignStr) {
       await next();
     } else {

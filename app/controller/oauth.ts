@@ -2,8 +2,15 @@ import { Controller } from 'egg';
 
 export default class OauthController extends Controller {
   public async basecallback() {
-    this.ctx.body = {
-      a: 1,
-    };
+    const { ctx } = this;
+    const { brandId, type, shareParam } = ctx.params;
+    const { code, state } = ctx.query;
+    await this.ctx.service.auth.baseCallBack({
+      brandId,
+      oauthtype: type,
+      code,
+      state,
+      shareParam,
+    });
   }
 }

@@ -25,4 +25,22 @@ export default class Auth extends Service {
       return null;
     }
   }
+
+  public async baseCallBack(params) {
+    try {
+
+      const Data = await this.ctx.helper.mallRequest({
+        method: 'GET',
+        url: '/Wx/OAuth/BaseCallback?' + stringify(params),
+      });
+      console.log(Data);
+
+
+    } catch (error) {
+      console.log(error);
+      return null;
+    }
+  }
+
+
 }

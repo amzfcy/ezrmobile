@@ -1,5 +1,6 @@
 import { EggAppConfig, EggAppInfo, PowerPartial } from 'egg';
 import path = require('path');
+import fs = require('fs');
 export default (appInfo: EggAppInfo) => {
   const config = {} as PowerPartial<EggAppConfig>;
 
@@ -57,7 +58,9 @@ export default (appInfo: EggAppInfo) => {
   config.security = {
     csrf: false,
   };
-
+  config.siteFile = {
+    '/MP_verify_FE1uXdJK3mQzidHk.txt': fs.readFileSync('MP_verify_FE1uXdJK3mQzidHk.txt'),
+  };
   config.consul = {
     service: [{
       name: 'EZP.WeiXin.Mall.Service.Host',

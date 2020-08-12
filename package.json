@@ -11,6 +11,7 @@
     "start": "egg-scripts start --daemon --title=egg-server-EZR.Online.Mobile.Server",
     "stop": "egg-scripts stop --title=egg-server-EZR.Online.Mobile.Server",
     "dev": "egg-bin dev",
+    "dev80": "egg-bin dev --port=80",
     "debug": "egg-bin debug",
     "test-local": "egg-bin test",
     "test": "npm run lint -- --fix && npm run test-local",

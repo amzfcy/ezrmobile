@@ -18,7 +18,7 @@ export default () => {
   config.consul = {
     // ip: '192.168.12.102',
     ip: '10.0.0.18',
-    port: '8000',
+    port: '8500',
   };
 
   return config;

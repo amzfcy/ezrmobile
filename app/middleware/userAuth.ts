@@ -2,7 +2,7 @@ module.exports = () => {
   return async function userAuth(ctx, next) {
     const { user } = ctx.session;
     const { brandId } = ctx.request.header;
-    ctx.session.brandId = brandId || 1;
+    ctx.session.brandId = brandId || 429;
     if (user && user.SignStr) {
       await next();
     } else {

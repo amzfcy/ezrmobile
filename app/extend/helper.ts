@@ -4,13 +4,16 @@ import fs = require('fs');
 module.exports = {
 
   async mallRequest({
-    method, url, data, serviceType,
+    method, url, data, serviceType, header,
   }) {
     const serviceHost = this.ctx.service.consulConfig.getServiceHost(serviceType);
-    console.log(serviceHost);
+    const newHeader = Object.assign({
+      source: 'h5',
+    }, header || {});
     return request({
       method,
       url: serviceHost + url,
+      headers: newHeader,
       data,
     }).then(res => {
       if (!res.Success) {

@@ -36,9 +36,6 @@ export default class Auth extends Service {
       console.log(Data);
       if (Data.SignStr) {
         this.ctx.session.user = Data;
-        console.log('00000000099999');
-        console.log(this.ctx.session.user);
-        console.log('00000000099999');
       }
 
     } catch (error) {

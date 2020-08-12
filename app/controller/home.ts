@@ -3,20 +3,23 @@ import { Controller } from 'egg';
 export default class HomeController extends Controller {
   public async api() {
 
-    this.ctx.body = {
-      a: this.ctx.service.consulConfig.getServiceHost('mp'),
-    };
+    const { ctx } = this;
+    const { SignStr } = ctx.session.user;
+    const { serviceType } = ctx.headers;
+    console.log(ctx.request);
+    return await ctx.helper.mallRequest({
+      method: ctx.request.method,
+      header: {
+        SignStr,
+      },
+      url: ctx.request.url,
+      serviceType,
+    });
 
-    // const { ctx } = this;
-    // ctx.render('index.html');
+
   }
 
   public async scanv() {
-
-    this.ctx.body = {
-      a: 1,
-    };
-    // const { ctx } = this;
-    // ctx.render('index.html');
+    this.ctx.helper.successBody();
   }
 }

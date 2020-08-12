@@ -39,9 +39,9 @@ export default class ConsulConfig extends Service {
 
       // 监听以下服务的变化
 
-      console.log(app.config.consul);
+
       app.config.consul.service.forEach(item => {
-        console.log(item.name);
+
         newConsul.watch({
           method: newConsul.health.service,
           options: { service: item.name },
@@ -180,7 +180,7 @@ export default class ConsulConfig extends Service {
       const nowServiceData = find(serviceList, v => v.ServerApp === nowService.name);
 
       // return nowServiceData.Service;
-      console.log(nowServiceData.Service);
+
       return sample(nowServiceData.Service);
     } catch (error) {
       return null;

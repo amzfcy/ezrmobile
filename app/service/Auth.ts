@@ -33,8 +33,9 @@ export default class Auth extends Service {
         method: 'GET',
         url: '/Wx/OAuth/BaseCallback?' + stringify(params),
       });
-      console.log(Data);
-
+      if (Data.SingStr) {
+        this.ctx.session.user = Data;
+      }
 
     } catch (error) {
       console.log(error);

@@ -34,7 +34,7 @@ export default class Auth extends Service {
         url: '/Wx/OAuth/BaseCallback?' + stringify(params),
       });
       console.log(Data);
-      if (Data.SingStr) {
+      if (Data.SignStr) {
         this.ctx.session.user = Data;
         console.log('00000000099999');
         console.log(this.ctx.session.user);

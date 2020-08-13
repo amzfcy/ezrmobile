@@ -11,14 +11,16 @@ export default class Auth extends Service {
         IsNewWeiXinNode: true,
       };
       console.log(queryParams);
-      const { OAuthCallBack } = await this.ctx.helper.mallRequest({
+      const data = await this.ctx.helper.mallRequest({
         method: 'GET',
         url: '/Wx/OAuth/GetBaseAuthorizeUrl?' + stringify(queryParams),
       });
-      console.log(OAuthCallBack);
-      if (OAuthCallBack) {
-        this.ctx.redirect(OAuthCallBack);
-      }
+      // console.log(OAuthCallBack);
+      this.ctx.body = {
+        ...data,
+        Status: 10001,
+      };
+      return null;
 
     } catch (error) {
       console.log(error);
@@ -33,9 +35,9 @@ export default class Auth extends Service {
         method: 'GET',
         url: '/Wx/OAuth/BaseCallback?' + stringify(params),
       });
-      console.log(Data);
       if (Data.SignStr) {
         this.ctx.session.user = Data;
+        this.ctx.redirect(params.rtUrl);
       }
 
     } catch (error) {

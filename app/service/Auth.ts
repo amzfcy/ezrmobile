@@ -41,9 +41,11 @@ export default class Auth extends Service {
         url: '/Wx/OAuth/BaseCallback?' + stringify(params),
       });
       this.ctx.logger.info('info_log，info信息: %j', Data);
-      if (Data.SignStr) {
-        this.ctx.session.user = Data;
+      if (Data.Success) {
+        this.ctx.session.user = Data.Result;
         this.ctx.redirect(this.ctx.session.rtUrl || 'https://m-q1.ezrpro.cn');
+      } else {
+        console.log('111111');
       }
     } catch (error) {
       console.log(error);

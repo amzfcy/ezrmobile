@@ -46,8 +46,9 @@ export default class Auth extends Service {
       console.log(this.ctx.session);
       console.log(1111111111);
       if (Data.Success) {
-        this.ctx.session.user = Data.Result;
+
         this.ctx.redirect(this.ctx.session.rtUrl || 'https://www.baidu.com');
+        this.ctx.session.user = Data.Result;
       } else {
         console.log('111111');
       }

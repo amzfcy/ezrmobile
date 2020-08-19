@@ -11,10 +11,6 @@ export default () => {
     },
   };
 
-  config.apiDomain = {
-    url: 'http://192.168.12.162:6092',
-  };
-
   config.consul = {
     ip: '192.168.12.102',
     // ip: '10.0.0.18',

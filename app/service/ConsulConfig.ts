@@ -42,12 +42,16 @@ export default class ConsulConfig extends Service {
 
       app.config.consul.service.forEach(item => {
 
-        newConsul.watch({
+        const watch = newConsul.watch({
           method: newConsul.health.service,
           options: { service: item.name },
           backoffFactor: 1000,
-        }).on('change', data => {
+        });
+        watch.on('change', data => {
           ctx.service.consulConfig.triggerGetConfig(data && data.Value ? JSON.parse(data.Value) : []);
+        });
+        watch.on('error', error => {
+          console.log(error);
         });
       });
 
@@ -62,7 +66,7 @@ export default class ConsulConfig extends Service {
         meta: { Cluster: publishInfo[1], RegisterTime: String(Date.now()), PublishId: publishInfo[2] },
         check: {
           http: 'http://' + ip + ':' + reg + '/scanv',
-          deregistercriticalserviceafter: '6s',
+          deregistercriticalserviceafter: '60s',
           ttl: '6s',
           interval: '3s',
           timeout: '5s',

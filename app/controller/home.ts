@@ -5,7 +5,7 @@ export default class HomeController extends Controller {
 
     const { ctx } = this;
     const { SignStr } = ctx.session.user;
-    const { serviceType } = ctx.header;
+    const { servicetype } = ctx.request.header;
     console.log(ctx.request);
     return await ctx.helper.mallRequest({
       method: ctx.request.method,
@@ -13,11 +13,15 @@ export default class HomeController extends Controller {
         SignStr,
       },
       url: ctx.request.url,
-      serviceType,
+      serviceType: servicetype,
     });
   }
 
   public async scanv() {
-    this.ctx.helper.successBody();
+    this.ctx.body = {
+      code: 200,
+      msg: 'ok',
+    };
+    // this.ctx.helper.successBody();
   }
 }

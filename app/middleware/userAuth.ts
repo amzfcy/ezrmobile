@@ -1,11 +1,11 @@
 module.exports = () => {
   return async function userAuth(ctx, next) {
     const { user } = ctx.session;
-    const { brandId } = ctx.request.header;
-    ctx.session.brandId = brandId || 1;
-    // console.log(1212122112212121);
-    // console.log('user', user);
-    // console.log(21212112999909009);
+    console.log(ctx.request.header);
+
+    const { brandid, rturl } = ctx.request.header;
+    ctx.session.brandId = brandid;
+    ctx.session.rtUrl = rturl;
     if (user && user.SignStr) {
       await next();
     } else {

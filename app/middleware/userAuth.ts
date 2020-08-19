@@ -1,11 +1,19 @@
 module.exports = () => {
   return async function userAuth(ctx, next) {
     const { user } = ctx.session;
-    console.log(ctx.request.header);
 
     const { brandid, rturl } = ctx.request.header;
-    ctx.session.brandId = brandid;
-    ctx.session.rtUrl = rturl;
+
+    if (brandid) {
+      ctx.session.brandId = brandid;
+    } else {
+      ctx.helper.errorBody(60001, '品牌号不能为空');
+    }
+
+    if (rturl) {
+      ctx.session.rtUrl = rturl;
+    }
+
     if (user && user.SignStr) {
       await next();
     } else {

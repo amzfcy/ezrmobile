@@ -38,12 +38,14 @@ module.exports = {
 
   errorBody(code, message) {
     this.ctx.body = {
-      code,
-      message,
+      Status: code,
+      Msg: message,
+      Result: null,
     };
     this.ctx.logger.info('warning_log，用户信息: %j，请求参数: %j，返回参数: %j', this.ctx.session, this.ctx.request.body, {
-      code,
-      message,
+      Status: code,
+      Msg: message,
+      Result: null,
     });
   },
 

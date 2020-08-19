@@ -5,7 +5,7 @@ export default class OauthController extends Controller {
     const { ctx } = this;
     const { brandId, type, shareParam } = ctx.params;
     const { code, state } = ctx.query;
-    await this.ctx.service.auth.baseCallBack({
+    return await this.ctx.service.auth.baseCallBack({
       brandId,
       oauthtype: type,
       code,

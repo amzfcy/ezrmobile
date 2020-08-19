@@ -40,9 +40,10 @@ export default class Auth extends Service {
         method: 'GET',
         url: '/Wx/OAuth/BaseCallback?' + stringify(params),
       });
+      this.ctx.logger.info('info_log，info信息: %j', Data);
       if (Data.SignStr) {
         this.ctx.session.user = Data;
-        this.ctx.redirect(this.ctx.session.rtUrl);
+        this.ctx.redirect(this.ctx.session.rtUrl || 'https://m-q1.ezrpro.cn');
       }
     } catch (error) {
       console.log(error);

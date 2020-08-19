@@ -9,7 +9,7 @@
   },
   "scripts": {
     "start": "egg-scripts start --daemon --title=egg-server-EZR.Online.Mobile.Server",
-    "stop": "egg-scripts stop --title=egg-server-EZR.Online.Mobile.Server" ,
+    "stop": "egg-scripts stop --title=egg-server-EZR.Online.Mobile.Server",
     "start_test": "egg-scripts start --env=test --daemon --port=80 --title=test",
     "stop_test": "egg-scripts stop --title=test",
     "dev": "egg-bin dev",
@@ -28,6 +28,7 @@
     "axios": "^0.19.2",
     "consul": "^0.37.0",
     "egg": "^2.6.1",
+    "egg-cors": "^2.2.3",
     "egg-scripts": "^2.6.0",
     "egg-view-assets": "^1.6.1",
     "fs": "^0.0.1-security",

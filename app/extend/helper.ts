@@ -6,6 +6,11 @@ module.exports = {
   async mallRequest({
     method, url, data, serviceType, header,
   }) {
+    console.log(method);
+    console.log(url);
+    console.log(data);
+    console.log(serviceType);
+    console.log(header);
     const serviceHost = this.ctx.service.consulConfig.getServiceHost(serviceType);
     const newHeader = Object.assign({
       source: 'h5',
@@ -20,7 +25,7 @@ module.exports = {
       //   return Promise.reject(res);
       // }
       return res;
-    }).catch(err => Promise.reject(err || '请求错误'));
+    }).catch(err => Promise.reject(err));
   },
 
   successBody(data = {}) {

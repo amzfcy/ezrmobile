@@ -1,6 +1,8 @@
 import { Service } from 'egg';
 import { stringify } from 'qs';
-
+declare namespace global {
+  export let mUrl: any;
+}
 export default class Auth extends Service {
 
   public async getAuthUrl() {
@@ -44,7 +46,7 @@ export default class Auth extends Service {
       this.ctx.logger.info('info_log，baseCallBack-info信息: %j', Data.Result);
 
       if (Data.Success) {
-        this.ctx.redirect('http://localhost:3000/#/about?SignStr=' + Data.Result.SignStr);
+        this.ctx.redirect(global.mUrl + '?SignStr=' + Data.Result.SignStr);
         // this.ctx.session.user = Data.Result;
       } else {
         console.log('111111');

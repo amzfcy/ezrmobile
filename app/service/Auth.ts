@@ -8,6 +8,7 @@ export default class Auth extends Service {
     try {
       const queryParams = {
         brandId: this.ctx.session.brandId,
+        rtUrl: this.ctx.session.rtUrl,
         IsNewWeiXinNode: true,
       };
       console.log(queryParams);
@@ -40,10 +41,13 @@ export default class Auth extends Service {
         method: 'GET',
         url: '/Wx/OAuth/BaseCallback?' + stringify(params),
       });
-      this.ctx.logger.info('info_log，info信息: %j', Data);
+      this.ctx.logger.info('info_log，baseCallBack-info信息: %j', Data.Result);
+      console.log(1111111111);
+      console.log(this.ctx.session);
+      console.log(1111111111);
       if (Data.Success) {
         this.ctx.session.user = Data.Result;
-        this.ctx.redirect(this.ctx.session.rtUrl || 'https://m-q1.ezrpro.cn');
+        this.ctx.redirect(this.ctx.session.rtUrl || 'https://www.baidu.com');
       } else {
         console.log('111111');
       }

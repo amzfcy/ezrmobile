@@ -1,8 +1,7 @@
 module.exports = () => {
   return async function userAuth(ctx, next) {
-    const { user } = ctx.session;
 
-    const { brandid, rturl } = ctx.request.header;
+    const { brandid, rturl, signstr } = ctx.request.header;
 
     if (brandid) {
       ctx.session.brandId = brandid;
@@ -15,7 +14,7 @@ module.exports = () => {
       ctx.session.rtUrl = rturl;
     }
     ctx.logger.info('info_log，middleware-userAuth-info信息: %j', ctx.session);
-    if (user && user.SignStr) {
+    if (signstr) {
       await next();
     } else {
       await ctx.service.auth.getAuthUrl();

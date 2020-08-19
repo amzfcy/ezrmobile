@@ -4,13 +4,13 @@ export default class HomeController extends Controller {
   public async api() {
 
     const { ctx } = this;
-    const { SignStr } = ctx.session.user;
-    const { servicetype } = ctx.request.header;
+
+    const { servicetype, signstr } = ctx.request.header;
     console.log(ctx.request);
     return await ctx.helper.mallRequest({
       method: ctx.request.method,
       header: {
-        SignStr,
+        SignStr: signstr,
       },
       url: ctx.request.url,
       serviceType: servicetype,

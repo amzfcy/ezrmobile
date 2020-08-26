@@ -10,7 +10,6 @@ module.exports = () => {
       ctx.helper.errorBody(60001, '品牌号不能为空');
     }
 
-
     if (rturl) {
       ctx.session.rtUrl = rturl;
     }

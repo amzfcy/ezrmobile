@@ -22,7 +22,11 @@ export default class HomeController extends Controller {
         this.ctx.helper.errorBody(404, '接口不存在');
 
       } else {
-        this.ctx.helper.errorBody(500, '接口错误');
+        if (error.response.data) {
+          this.ctx.body = error.response.data;
+        } else {
+          this.ctx.helper.errorBody(404, '接口错误');
+        }
       }
     }
 

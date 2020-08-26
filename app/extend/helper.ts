@@ -6,11 +6,7 @@ module.exports = {
   async mallRequest({
     method, url, data, serviceType, header,
   }) {
-    console.log(method);
-    console.log(url);
-    console.log(data);
-    console.log(serviceType);
-    console.log(header);
+
     const serviceHost = this.ctx.service.consulConfig.getServiceHost(serviceType);
     const newHeader = Object.assign({
       source: 'h5',

@@ -5,26 +5,28 @@ export default class HomeController extends Controller {
 
     const { ctx } = this;
 
-    const { servicetype, signstr } = ctx.request.header;
+    const { servicetype } = ctx.request.header;
     try {
       const data = await ctx.helper.mallRequest({
         method: ctx.request.method,
-        header: {
-          SignStr: signstr,
-        },
+        header: ctx.request.header,
+        data: ctx.request.body,
         url: ctx.request.url.replace('/api', ''),
         serviceType: servicetype,
       });
-      console.log(data);
+
       this.ctx.body = data;
     } catch (error) {
+      console.log('11111');
       if (error.response.status === 404) {
         this.ctx.helper.errorBody(404, '接口不存在');
 
       } else {
         if (error.response.data) {
+          // console.log(error.response.data);
           this.ctx.body = error.response.data;
         } else {
+          console.log('333333');
           this.ctx.helper.errorBody(404, '接口错误');
         }
       }

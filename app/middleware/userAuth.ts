@@ -2,12 +2,15 @@
 module.exports = () => {
   return async function userAuth(ctx, next) {
 
-    const { brandid, rturl, signstr, murl } = ctx.request.header;
 
-    if (brandid) {
-      ctx.session.brandId = brandid;
+    const { rturl, signstr, murl } = ctx.request.header;
+
+    const brandId = ctx.request.header['ezr-branid'];
+    if (brandId) {
+      ctx.session.brandId = brandId;
     } else {
       ctx.helper.errorBody(60001, '品牌号不能为空');
+      return null;
     }
 
     if (rturl) {

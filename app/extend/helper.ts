@@ -11,6 +11,8 @@ module.exports = {
     const newHeader = Object.assign({
       source: 'h5',
     }, header || {});
+    console.log(newHeader);
+    console.log(data);
     return request({
       method,
       url: serviceHost + url,

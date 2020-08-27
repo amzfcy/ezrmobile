@@ -5,7 +5,7 @@ module.exports = () => {
 
     const { rturl, signstr, murl } = ctx.request.header;
 
-    const brandId = ctx.request.header['ezr-branid'];
+    const brandId = ctx.request.header['ezr-brand-id'];
     if (brandId) {
       ctx.session.brandId = brandId;
     } else {

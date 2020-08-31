@@ -15,9 +15,10 @@ export default class Auth extends Service {
         IsNewWeiXinNode: true,
       };
       console.log(queryParams);
-      let data = await this.ctx.helper.mallRequest({
+      let data = await this.ctx.helper.mallRequestByConsul({
         method: 'GET',
         url: '/Wx/OAuth/GetBaseAuthorizeUrl?' + stringify(queryParams),
+        serviceType: 'mp',
       });
       console.log(data);
       // console.log(OAuthCallBack);
@@ -45,6 +46,7 @@ export default class Auth extends Service {
       const Data = await this.ctx.helper.mallRequest({
         method: 'GET',
         url: '/Wx/OAuth/BaseCallback?' + stringify(params),
+        serviceType: 'mp',
       });
       this.ctx.logger.info('info_log，baseCallBack-info信息: %j', Data.Result);
 

@@ -33,6 +33,33 @@ module.exports = {
     });
   },
 
+  async mallRequestByConsul({
+    method, url, data, serviceType, header,
+  }) {
+
+
+    const serviceHost = this.ctx.service.consulConfig.getServiceHost(serviceType);
+    const newHeader = Object.assign({
+      source: 'h5',
+    }, header || {});
+
+    console.log(serviceHost + url);
+    return requests({
+      method,
+      url: serviceHost + url,
+      headers: newHeader,
+      data,
+    }).then(res => {
+      // if (!res.Success) {
+      //   return Promise.reject(res);
+      // }
+      return res;
+    }).catch(err => {
+
+      return Promise.reject(err);
+    });
+  },
+
   successBody(data = {}) {
     this.ctx.body = {
       code: 200,

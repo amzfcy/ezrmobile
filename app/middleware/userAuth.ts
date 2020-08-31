@@ -23,7 +23,7 @@ module.exports = () => {
       });
 
     }
-    ctx.logger.info('info_log，middleware-userAuth-info信息: %j', ctx.session);
+    ctx.logger.info('info_log，middleware-userAuth-info信息: %j', ctx.request.header);
     if (signstr) {
       await next();
     } else {

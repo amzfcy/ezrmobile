@@ -1,5 +1,6 @@
-import { request } from '../utils/http';
+import { requests } from '../utils/http';
 import fs = require('fs');
+import { find } from 'lodash';
 
 module.exports = {
 
@@ -7,13 +8,16 @@ module.exports = {
     method, url, data, serviceType, header,
   }) {
 
-    const serviceHost = this.ctx.service.consulConfig.getServiceHost(serviceType);
+    console.log('11111111');
+    const serviceData = find(this.app.config.serverHost, v => v.type === serviceType);
+
+    const serviceHost = serviceData.name;
     const newHeader = Object.assign({
       source: 'h5',
     }, header || {});
-    console.log(newHeader);
-    console.log(data);
-    return request({
+
+    console.log(serviceHost + url);
+    return requests({
       method,
       url: serviceHost + url,
       headers: newHeader,
@@ -23,7 +27,10 @@ module.exports = {
       //   return Promise.reject(res);
       // }
       return res;
-    }).catch(err => Promise.reject(err));
+    }).catch(err => {
+
+      return Promise.reject(err);
+    });
   },
 
   successBody(data = {}) {

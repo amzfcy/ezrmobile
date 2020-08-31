@@ -9,7 +9,10 @@ export default class HomeController extends Controller {
     try {
       const data = await ctx.helper.mallRequest({
         method: ctx.request.method,
-        header: ctx.request.header,
+        header: {
+          'ezr-brand-id': ctx.session.brandId,
+          SignStr: ctx.request.header.signstr,
+        },
         data: ctx.request.body,
         url: ctx.request.url.replace('/api', ''),
         serviceType: servicetype,
@@ -17,18 +20,22 @@ export default class HomeController extends Controller {
 
       this.ctx.body = data;
     } catch (error) {
-      console.log('11111');
-      if (error.response.status === 404) {
-        this.ctx.helper.errorBody(404, '接口不存在');
 
-      } else {
-        if (error.response.data) {
-          // console.log(error.response.data);
-          this.ctx.body = error.response.data;
+      if (error.response) {
+        if (error.response.status === 404) {
+          this.ctx.helper.errorBody(404, '接口不存在');
+
         } else {
-          console.log('333333');
-          this.ctx.helper.errorBody(404, '接口错误');
+          if (error.response.data) {
+          // console.log(error.response.data);
+            this.ctx.body = error.response.data;
+          } else {
+            console.log('333333');
+            this.ctx.helper.errorBody(500, '接口错误');
+          }
         }
+      } else {
+        this.ctx.helper.errorBody(500, '服务处理错误');
       }
     }
 

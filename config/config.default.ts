@@ -77,6 +77,7 @@ export default (appInfo: EggAppInfo) => {
     }],
     appName: 'EZR.Online.Mobile.Server',
   };
+
   // the return config will combines to EggAppConfig
   return {
     ...config,

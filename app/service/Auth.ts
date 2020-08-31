@@ -2,6 +2,7 @@ import { Service } from 'egg';
 import { stringify } from 'qs';
 declare namespace global {
   export let mUrl: any;
+
 }
 export default class Auth extends Service {
 

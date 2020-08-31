@@ -32,7 +32,9 @@
     "egg-scripts": "^2.6.0",
     "egg-view-assets": "^1.6.1",
     "fs": "^0.0.1-security",
-    "lodash": "^4.17.19"
+    "https": "^1.0.0",
+    "lodash": "^4.17.19",
+    "request": "^2.88.2"
   },
   "devDependencies": {
     "@types/mocha": "^2.2.40",

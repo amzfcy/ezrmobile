@@ -1,20 +1,36 @@
-import axios, { AxiosRequestConfig, AxiosResponse, AxiosError } from 'axios';
+import request = require('request');
+export async function requests(options) {
 
-export async function request(options: AxiosRequestConfig) {
+  console.log(request);
+  const { url, data, method = 'get', headers } = options;
+  // return axios({
+  //   url,
+  //   method,
+  //   data,
+  //   headers,
+  // }).then(async (res: AxiosResponse) => {
+  //   console.log(res);
+  //   // if (res.status !== 200) {
+  //   //   return {
+  //   //     code: 1,
+  //   //   };
+  //   // }
+  //   return res.data;
+  // }).catch((err: AxiosError) => {
+  //   console.log(err);
+  //   return Promise.reject(err);
+  // });
 
-  const { url, data, method = 'get' } = options;
-  return axios({
+  return request({
     url,
     method,
     data,
-  }).then(async (res: AxiosResponse) => {
-    // if (res.status !== 200) {
-    //   return {
-    //     code: 1,
-    //   };
-    // }
-    return res.data;
-  }).catch((err: AxiosError) => {
-    return Promise.reject(err);
+    headers,
+    rejectUnauthorized: false,
+  }, (err, res) => {
+    console.log(err);
+    console.log('000000000');
+    console.log(res);
   });
+
 }

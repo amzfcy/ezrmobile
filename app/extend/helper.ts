@@ -13,7 +13,7 @@ module.exports = {
 
     const serviceHost = serviceData.name;
     const newHeader = Object.assign({
-      source: 'h5',
+      Source: 'h5',
     }, header || {});
 
     console.log(serviceHost + url);

@@ -16,7 +16,7 @@ export default () => {
     name: 'https://wxa-giftcard-q1.ezrpro.com',
     type: 'miniWx',
   }, {
-    name: 'https://test-wxavip.ezrpro.com',
+    name: 'https://wxavip-q1.ezrpro.com',
     type: 'miniEx',
   }];
   return config;

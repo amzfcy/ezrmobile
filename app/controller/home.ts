@@ -21,6 +21,7 @@ export default class HomeController extends Controller {
       this.ctx.body = data;
     } catch (error) {
 
+      console.log(error);
       if (error.response) {
         if (error.response.status === 404) {
           this.ctx.helper.errorBody(404, '接口不存在');

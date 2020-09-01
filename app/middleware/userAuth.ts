@@ -21,8 +21,8 @@ module.exports = () => {
       Object.assign(global, {
         mUrl: murl,
       });
-
     }
+
     ctx.logger.info('info_log，middleware-userAuth-info信息: %j', ctx.request.header);
     if (signstr) {
       await next();

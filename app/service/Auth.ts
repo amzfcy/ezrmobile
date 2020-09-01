@@ -43,7 +43,7 @@ export default class Auth extends Service {
 
       console.log('122121212');
       console.log(global.mUrl + '?SignStr=' + 1);
-      const Data = await this.ctx.helper.mallRequest({
+      const Data = await this.ctx.helper.mallRequestByConsul({
         method: 'GET',
         url: '/Wx/OAuth/BaseCallback?' + stringify(params),
         serviceType: 'mp',

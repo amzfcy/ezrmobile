@@ -51,7 +51,7 @@ export default class Auth extends Service {
       this.ctx.logger.info('info_log，baseCallBack-info信息: %j', Data.Result);
 
       if (Data.Success) {
-        this.ctx.redirect(global.mUrl + '?SignStr=' + Data.Result.SignStr);
+        this.ctx.redirect(global.mUrl + '?SignStr=' + encodeURIComponent(Data.Result.SignStr));
         // this.ctx.session.user = Data.Result;
       } else {
         console.log('111111');

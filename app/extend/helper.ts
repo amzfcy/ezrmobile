@@ -1,4 +1,4 @@
-import { requests } from '../utils/http';
+import { request } from '../utils/http';
 import fs = require('fs');
 import { find } from 'lodash';
 
@@ -17,7 +17,7 @@ module.exports = {
     }, header || {});
 
     console.log(serviceHost + url);
-    return requests({
+    return request({
       method,
       url: serviceHost + url,
       headers: newHeader,
@@ -44,7 +44,7 @@ module.exports = {
     }, header || {});
 
     console.log(serviceHost + url);
-    return requests({
+    return request({
       method,
       url: serviceHost + url,
       headers: newHeader,

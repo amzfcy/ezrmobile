@@ -17,7 +17,10 @@ export default () => {
     type: 'miniWx',
   }, {
     name: 'https://wxavip-q1.ezrpro.com',
-    type: 'miniEx',
+    type: 'miniVip',
+  }, {
+    name: 'https://wxa-q1-ex.ezrpro.com/',
+    type: 'miniMallEx',
   }];
   return config;
 };

@@ -19,7 +19,7 @@ export default () => {
     name: 'https://wxavip-q1.ezrpro.com',
     type: 'miniVip',
   }, {
-    name: 'https://wxa-q1-ex.ezrpro.com/',
+    name: 'https://wxa-q1-ex.ezrpro.com',
     type: 'miniMallEx',
   }];
   return config;
